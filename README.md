@@ -1,5 +1,1 @@
-
-# hackerlerin_cehennemi
-
-
 # Lymon
