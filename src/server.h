@@ -81,4 +81,4 @@ void incrRefCnt(sObj* sobj);
 void decRefCnt(sObj* sobj);
 void sendBuffer(int fd, char* msg);
 void sendBuffError(int fd, char* msg);
-void lympanic(char *msg);
+void lympanic( const char* format, ... );

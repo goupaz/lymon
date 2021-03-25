@@ -3,6 +3,7 @@
 #include <pubsub.h>
 #include <common.h>
 #include <time.h>
+#include <stdarg.h>
 #include <socket.h>
 #include <signal.h>
 #include <unistd.h>
@@ -50,6 +51,7 @@ int skt() {
     int status;
     int sockfd, new_fd;
     int on = 1;
+    int bres = -1;
     char pbuff[NI_MAXSERV];
     struct addrinfo server;
     struct addrinfo *serverinfo;
@@ -85,6 +87,8 @@ int skt() {
                 exit(EXIT_FAILURE);
             }
             break;
+        } else {
+            lympanic("bind failed %s\n", strerror(errno));
         }
     }
     freeaddrinfo(serverinfo);
@@ -159,9 +163,13 @@ void clean(clientObj* cl) {
     deleteNode(srvObj.clients, clnode);
 }
 
-void lympanic(char *msg) {
-    fprintf(stderr, "Server error!\n");
-    fprintf(stderr, "%s\n", msg); 
+void lympanic( const char* format, ... ) {
+    va_list args;
+    fprintf( stderr, "Panic: " );
+    va_start( args, format );
+    vfprintf( stderr, format, args );
+    va_end( args );
+    fprintf( stderr, "\n" );
     abort();
 }
 
@@ -334,8 +342,6 @@ void create_epoll(int sockfd) {
                         break;
                     }
                 }
-                printf("connection accepted\n");
-                sendBuffer(clientfd, "Lymon in-memory database");
                 set_non_block(sockfd);
                 ev.data.fd = clientfd;
                 ev.events = EPOLLIN;
@@ -380,9 +386,21 @@ void create_epoll(int sockfd) {
     return;
 }
 
+void background() {
+    pid_t pid;
+    pid = fork();
+    if(pid < 0)
+        lympanic("fork failed: fork process\n");
+    if(pid > 0)
+        exit(EXIT_SUCCESS);
+    if (setsid() < 0)
+        exit(EXIT_FAILURE);
+}
+
 int main() {
     catch_sigterm();
     createServer(); // create server structure
+    background();
     int sockfd = skt();
     create_epoll(sockfd);
 }
