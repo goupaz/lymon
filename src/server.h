@@ -1,4 +1,5 @@
 #include <hashmap.h>
+#include <ctype.h>
 #include <link.h>
 #ifdef CONCURRENT 
 #else

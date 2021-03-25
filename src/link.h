@@ -1,4 +1,9 @@
-#include <hacker.h>
+#include <stdint.h>
+#include <string.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <stdbool.h>
+#include <unistd.h>
 typedef enum listDirection {
     HEAD,
     TAIL

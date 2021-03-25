@@ -1,3 +1,7 @@
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
+#include <stddef.h>
 #include <murmurhash.h>
 #include <stdbool.h>
 #define LOAD_FACTOR(x) (((x) * 775) >> 10)

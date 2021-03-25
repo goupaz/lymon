@@ -1,5 +1,4 @@
 #include <lym_epoll.h>
-#include <hacker.h>
 #include <pubsub.h>
 #include <common.h>
 #include <time.h>

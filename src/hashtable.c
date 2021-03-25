@@ -1,6 +1,4 @@
-#include <hacker.h>
 #include <hashmap.h>
-
 hash_map* init_hash(hash_map mi) {
     hash_map*   hm = calloc(1, sizeof(hash_map));
     hash_entry* he = calloc(mi.capacity, sizeof(hash_entry));

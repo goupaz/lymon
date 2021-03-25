@@ -1,4 +1,3 @@
-#include <hacker.h>
 #include <server.h>
 #include <pubsub.h>
 #include <sys/socket.h>
