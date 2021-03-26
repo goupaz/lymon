@@ -202,11 +202,11 @@ const commands* lookupCommand(clientObj* cl, int argc) {
     char *errmsg = NULL;
     size_t entry_cnt = (sizeof(cmds) / sizeof(struct commands));
     for(ii = 0; ii < entry_cnt; ii ++) {
-        if(strcmp(buff, cmds[ii].command) != 0) {
+        if(strcasecmp(buff, cmds[ii].command) != 0) {
             continue;
         }
         if(-cmds[ii].minargs > argc || cmds[ii].minargs > argc) {
-            sendBuffer(fd, "Error: Number of cmd args doesn't match\n");
+            sendBuffer(fd, "Error: Number of cmd args doesn't match");
             return NULL;
         }
         return &cmds[ii];
