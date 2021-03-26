@@ -8,7 +8,7 @@ Lymon is non-volatile in-memory database and can be used to access internal data
 
 
 ## Demo
-[![asciicast](https://asciinema.org/a/1zbJ2ewvGeRDgvb5Rl6GDEvhA.svg)](https://asciinema.org/a/1zbJ2ewvGeRDgvb5Rl6GDEvhA)
+[![asciicast](https://asciinema.org/a/402547.svg)](https://asciinema.org/a/402547)
 
 ## Installation
 ### Building from source code
